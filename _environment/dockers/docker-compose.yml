@@ -1,0 +1,24 @@
+version: "3"
+# docker-compose up --build
+# docker-compose rm -v to delete everything and starting it up again.
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - gelerion-net
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - gelerion-net
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+networks:
+  gelerion-net:
+    driver: bridge

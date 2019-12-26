@@ -1,0 +1,47 @@
+general:
+# acts as kafka.group-id
+  test-id: "my-test-name"
+
+zk:
+  url: "zookeeper:2181"
+
+kafka:
+  topics: "kafka-topic"
+  use-timestamp-seek: false
+
+channel:
+  capacity: 100
+
+scheduler:
+  speedup-factor: 10
+  query-cutoff-time: "2019-10-28T00:00:00.000Z"
+#  query-cutoff-time: dynamic
+#  scheduling-start-time: "2019-11-14T18:50:00.000Z"
+#  pay attention to the zone id
+  scheduling-start-time: "2019-12-26T15:37:00.000+02:00[Asia/Jerusalem]"
+#  scheduling-start-time: now
+  core-pool-size: 2
+  max-scheduled-tasks: 50000
+
+http:
+  service:
+    log-response-body: true
+  client:
+    threads: 60
+
+extensions:
+  provider:
+    name: "druid"
+
+# extensions
+druid:
+  url: "http://broker-url/druid/v2"
+  parser: "druid-query-log"
+  # --- optional
+  # not implemented
+  rename: [
+      "a -> b",
+      "a1 -> b1"
+    ]
+  # not implemented
+  filter: ["a", "b"]
